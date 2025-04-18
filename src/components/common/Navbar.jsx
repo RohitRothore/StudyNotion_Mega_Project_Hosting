@@ -13,27 +13,13 @@ import { AiOutlineMenu,  } from "react-icons/ai"
 import {BsChevronDown} from "react-icons/bs"
 import { ACCOUNT_TYPE } from "../../utils/constants";
 
-
-// const sublinks = [
-//   {
-//     title: "Python",
-//     link: "/catalog/python"
-//   },
-//   {
-//     title: "Web Dev",
-//     link: "/catalog/web-development"
-//   }
-// ]
-
 const Navbar = () => {
-    console.log("Printing base url: ",process.env.REACT_APP_BASE_URL);
     const {token} = useSelector((state) => state.auth)
     const {user} = useSelector((state) => state.profile)
     const {totalItems} = useSelector((state) => state.cart);
     const location = useLocation();
     const [loading, setLoading] = useState(false)
     const [sublinks, setSublinks] = useState([])
-
 
     useEffect(() =>{
       (async() =>{
@@ -47,10 +33,6 @@ const Navbar = () => {
         setLoading(false)
       })()
     },[])
-
-    
-    
-
 
     const matchRoute = (route) =>{
         return matchPath({path:route}, location.pathname)
