@@ -28,7 +28,6 @@ function SignupForm(){
 
  const {firstName, lastName, email, password, confirmPassword} = formData;
 
- //handle input fields, when some value changes
  const handleOnChange = (e) =>{
     setFormData((prevData) =>({
         ...prevData,
@@ -36,12 +35,11 @@ function SignupForm(){
     }));
  };
 
- //handle form submission
  const handleOnSubmit = (e) =>{
     e.preventDefault();
 
     if(password !== confirmPassword){
-        toast.error("Password Do Not Match");
+        toast.error("Password not matched");
         return;
     }
     const signupData = {
@@ -51,22 +49,11 @@ function SignupForm(){
     //setting signup data to state
     //to be used after otp verification
     dispatch(setSignupData(signupData));
-    //send otp to user for veryfication
     dispatch(sendotp(formData.email, navigate));
 
-    // Reset
-    setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-
-    })
     setAccountType(ACCOUNT_TYPE.STUDENT);
  };
 
- //data to pass to tab component
  const tabData = [
     {
         id: 1,

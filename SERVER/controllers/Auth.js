@@ -7,6 +7,7 @@ const mailSender = require("../utils/mailSender");
 require("dotenv").config();
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 const Profile = require("../models/Profile");
+const otpTemplate = require("../mail/templates/emailVerificationTemplate");
 // const { response } = require("express");
 
 
@@ -211,7 +212,6 @@ exports.sendOTP = async (req, res) => {
         upperCaseAlphabets: false,
         
       });
-      // result = await OTP.findOne({ otp: otp });
     }
 
     const otpPayload = { email, otp };
@@ -219,6 +219,10 @@ exports.sendOTP = async (req, res) => {
     //create an entry in db for otp
     const otpBody = await OTP.create(otpPayload);
     console.log("OTP Body", otpBody);
+
+    const emailRes = await mailSender(email, "Please find otp below", otpTemplate(otp))
+
+    console.log("Email Res", emailRes)
 
     res.status(200).json({
       success: true,

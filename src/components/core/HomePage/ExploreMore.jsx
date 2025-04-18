@@ -21,6 +21,7 @@ const ExploreMore = () => {
   const setMyCards = (value) => {
     setCurrentTab(value);
     const result = HomePageExplore.filter((course) => course.tag === value);
+    console.log("🚀 ~ setMyCards ~ result:", result)
     setCourses(result[0].courses);
     setCurrentCard(result[0].courses[0].heading);
   };
@@ -38,6 +39,7 @@ const ExploreMore = () => {
 
       <div className="hidden mt-5 gap-5 mx-auto w-max text-richblack-200 font-medium lg:flex flex-row rounded-full bg-richblack-800 mb-5  py-1 px-3 drop-shadow-[0_1.5px_rgba(255,255,255,0.25)]">
         {tabsName.map((element, index) => {
+          console.log("🚀 ~ {tabsName.map ~ element:", element)
           return (
             <div
               className={`text-[16px] flex flex-row items-center gap-2 ${

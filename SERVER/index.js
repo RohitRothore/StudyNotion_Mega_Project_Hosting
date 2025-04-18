@@ -10,7 +10,7 @@ const profileRoutes = require("./routes/Profile");
 const courseRoutes = require("./routes/Course");
 const paymentRoutes = require("./routes/Payments");
 
-const databse = require("./config/database");
+const database = require("./config/database");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
@@ -19,7 +19,7 @@ const { cloudinaryConnect } = require("./config/cloudinary");
 dotenv.config()
 const PORT = process.env.PORT || 4000;
 
-databse.connect();
+database.connect();
 
 //middlewares
 app.use(cookieParser());
